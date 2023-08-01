@@ -1,20 +1,25 @@
-.Header {
+.header {
   height: 12vh;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 4rem;
-  border-bottom: 0.1rem solid black;
-}
 
-.buttonWallet {
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-}
+  div {
+    font-size: 3rem;
+    color: #5468ff;
+  }
 
-.buttonWallet:hover {
-  color: white;
-  background-color: black;
+  @media only screen and (max-width: 768px) {
+ 
 
+      button {
+        width: 8rem;
+        font-size: 1rem;
+      }
+   
+   
+
+  }
 }

@@ -5,17 +5,14 @@ import { Web3Modal } from "@web3modal/react";
 import { projectId, wagmiConfig, ethereumClient } from "./blockchain/config";
 import { WagmiConfig } from "wagmi";
 
-
-
-
 const App = () => {
   return (
     <>
       <WagmiConfig config={wagmiConfig}>
         <div className={styles.appWrapper}>
           <div className={styles.app}>
-            <Header />
-            <Main />
+          <Header />
+          <Main />
           </div>
         </div>
       </WagmiConfig>

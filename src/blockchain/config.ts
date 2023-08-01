@@ -20,4 +20,4 @@ export const wagmiConfig = createConfig({
   publicClient,
 });
 
- export const ethereumClient = new EthereumClient(wagmiConfig, chains);
+export const ethereumClient = new EthereumClient(wagmiConfig, chains);

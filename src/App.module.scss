@@ -1,29 +1,26 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-
+// #root {
+//   max-width: 1280px;
+//   margin: 0 auto;
+//   padding: 2rem;
+//   text-align: center;
+// }
 
 .appWrapper {
   background-color: silver;
   height: 100vh;
   padding: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   
 }
 
-.app {
-  border: 0.1rem solid black;
+.app{
+  width: 60rem;
+
 }
 
 
 
-.card {
-  padding: 2em;
-}
 
-.read-the-docs {
-  color: #888;
-}
