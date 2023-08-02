@@ -1,5 +1,5 @@
 import styles from "./App.module.scss";
-import Header from "./components/Header/Heder";
+import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { Web3Modal } from "@web3modal/react";
 import { projectId, wagmiConfig, ethereumClient } from "./blockchain/config";
@@ -10,10 +10,8 @@ const App = () => {
     <>
       <WagmiConfig config={wagmiConfig}>
         <div className={styles.app}>
-          {/* <div className={styles.app}> */}
-            <Header />
-            <Main />
-          {/* </div> */}
+          <Header />
+          <Main />
         </div>
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />

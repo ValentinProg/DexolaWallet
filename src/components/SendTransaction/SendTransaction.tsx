@@ -1,4 +1,4 @@
-import styles from './SendTransaction.module.scss';
+import styles from "./SendTransaction.module.scss";
 import { useDebounce } from "../../helpers/useDebounce";
 import { useState } from "react";
 import {
@@ -7,62 +7,59 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 import ButtonSpinner from "../ButtonSpinner/ButtonSpinner";
+import Button from "../Button/Button";
+import { walletValidationHandler } from "../../helpers/helpers";
+import { useAccount } from "wagmi";
 
 export const SendTransaction = () => {
-  const [to, setTo] = useState("");
-  const [toError, setToError] = useState("");
-
-  const toHandlerValidation = (e: any) => {
-    setTo(e.target.value);
-    const reg = /^(0x)?[0-9a-f]{40}$/;
-    if (!reg.test(String(e.target.value).toLowerCase())) {
-      setToError("Not a valid address");
-    } else {
-      setToError("");
-    }
-  };
-
-  const debouncedTo = useDebounce(to, 500);
-
+  const [walletAddress, setWalletAddress] = useState("");
+  const [validationError, setValidationError] = useState("");
   const [amount, setAmount] = useState("");
-
+  const { isConnected } = useAccount();
+  const debouncedTo = useDebounce(walletAddress, 500);
   const { config } = usePrepareSendTransaction({
     to: debouncedTo,
   });
   const { data, sendTransaction } = useSendTransaction(config);
-
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
 
   return (
-    <form className={styles.SendTransactionForm}
+    <form
+      className={styles.SendTransactionForm}
       onSubmit={(e) => {
         e.preventDefault();
         sendTransaction?.();
       }}
     >
-      <div>{toError}</div>
       <input
+        className={styles.input}
         aria-label="Recipient"
-        onChange={(e) => toHandlerValidation(e)}
+        onChange={(e) =>
+          walletValidationHandler(e, setWalletAddress, setValidationError)
+        }
         placeholder="Enter your wallet adress"
-        value={to}
+        value={walletAddress}
+        disabled={!isConnected || isLoading}
       />
       <input
+        className={styles.input}
         aria-label="Amount (ether)"
         onChange={(e) => setAmount(e.target.value)}
         placeholder="0.00"
         value={amount}
-        type='number'
+        type="number"
+        disabled={!isConnected || isLoading}
       />
-      <button disabled={isLoading || !sendTransaction || !to || !amount}>
+      <div className={styles.validationError}>{validationError}</div>
+      <Button disabled={!isConnected || isLoading}>
         {isLoading ? <ButtonSpinner /> : "Send"}
-        
-      </button>
+      </Button>
+
       {isSuccess && (
         <div>
-          Successfully sent {amount} ether to {to}
+          Successfully sent {amount} ether to {walletAddress}
           <div>
             <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
           </div>

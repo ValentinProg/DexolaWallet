@@ -1,5 +1,6 @@
 import styles from "./Main.module.scss";
 import { SendTransaction } from "../SendTransaction/SendTransaction";
+import Github from "../../assets/github.svg";
 
 const Main = () => {
   return (
@@ -7,7 +8,12 @@ const Main = () => {
       <div className={styles.main}>
         <SendTransaction />
       </div>
-      <a className={styles.gitHubLink} href="https://github.com/ValentinProg/DexolaWallet">gitHub</a>
+      <a
+        className={styles.gitHubLink}
+        href="https://github.com/ValentinProg/DexolaWallet"
+      >
+        <img className={styles.gitHubImg} src={Github} />
+      </a>
     </>
   );
 };
