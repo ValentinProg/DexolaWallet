@@ -9,11 +9,11 @@ const App = () => {
   return (
     <>
       <WagmiConfig config={wagmiConfig}>
-        <div className={styles.appWrapper}>
-          <div className={styles.app}>
-          <Header />
-          <Main />
-          </div>
+        <div className={styles.app}>
+          {/* <div className={styles.app}> */}
+            <Header />
+            <Main />
+          {/* </div> */}
         </div>
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />

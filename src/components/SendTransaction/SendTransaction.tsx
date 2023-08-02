@@ -1,3 +1,4 @@
+import styles from './SendTransaction.module.scss';
 import { useDebounce } from "../../helpers/useDebounce";
 import { useState } from "react";
 import {
@@ -35,7 +36,7 @@ export const SendTransaction = () => {
   });
 
   return (
-    <form
+    <form className={styles.SendTransactionForm}
       onSubmit={(e) => {
         e.preventDefault();
         sendTransaction?.();
@@ -51,11 +52,13 @@ export const SendTransaction = () => {
       <input
         aria-label="Amount (ether)"
         onChange={(e) => setAmount(e.target.value)}
-        placeholder="Enter amount"
+        placeholder="0.00"
         value={amount}
+        type='number'
       />
       <button disabled={isLoading || !sendTransaction || !to || !amount}>
         {isLoading ? <ButtonSpinner /> : "Send"}
+        
       </button>
       {isSuccess && (
         <div>

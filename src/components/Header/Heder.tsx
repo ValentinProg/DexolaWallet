@@ -1,7 +1,7 @@
 import ConnectButton from "../ConnectButton/ConnectButton";
 
 import styles from "./Header.module.scss";
-import { Web3Button } from "@web3modal/react";
+// import { Web3Button } from "@web3modal/react";
 
 const Header = () => {
   return (

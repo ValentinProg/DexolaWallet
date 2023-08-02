@@ -5,8 +5,7 @@ import { useWeb3Modal } from "@web3modal/react";
 import { useBalance } from "wagmi";
 import { useAccount } from "wagmi";
 import { getShortString } from "../../helpers/helpers";
-import { useCopyToClipboard } from "../../helpers/myhooks";
-
+import { useCopyToClipboard } from "../../helpers/useCopyToClipboard";
 
 const ConnectButton = () => {
   const { data } = useBalance({
@@ -16,11 +15,10 @@ const ConnectButton = () => {
   const { isOpen, open } = useWeb3Modal();
   const { address } = useAccount();
 
-  console.log(isOpen);
 
   const [value, copy] = useCopyToClipboard();
 
-  console.log(value);
+  // console.log(value);
 
   const buttonInfo = `${data?.formatted.slice(0, 4)} ${getShortString(
     address
@@ -38,7 +36,7 @@ const ConnectButton = () => {
               className={styles.copyButton}
               onClick={(e) => e.stopPropagation()}
             >
-              <img src={Copy} alt="Copy" onClick={() => copy(address)} />
+              {/* <img src={Copy} alt="Copy" onClick={() => copy(address)} /> */}
             </button>
           </>
         )}

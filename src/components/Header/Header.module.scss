@@ -1,25 +1,18 @@
 .header {
-  height: 12vh;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4rem;
 
   div {
     font-size: 3rem;
     color: #5468ff;
   }
 
-  @media only screen and (max-width: 768px) {
- 
-
-      button {
-        width: 8rem;
-        font-size: 1rem;
-      }
-   
-   
-
-  }
+  // @media only screen and (max-width: 768px) {
+  //   button {
+  //     width: 8rem;
+  //     font-size: 1rem;
+  //   }
+  // }
 }
