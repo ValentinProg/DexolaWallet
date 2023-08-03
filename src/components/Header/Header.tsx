@@ -6,7 +6,7 @@ import styles from "./Header.module.scss";
 const Header = () => {
   return (
     <div className={styles.header}>
-      <div>Logo</div>
+      <div className={styles.logo}>Logo</div>
       <ConnectButton />
       {/* <Web3Button/> */}
     </div>

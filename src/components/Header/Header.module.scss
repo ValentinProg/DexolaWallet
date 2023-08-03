@@ -4,15 +4,24 @@
   align-items: center;
   justify-content: space-between;
 
-  div {
+  .logo {
     font-size: 3rem;
     color: #5468ff;
   }
 
-  // @media only screen and (max-width: 768px) {
-  //   button {
-  //     width: 8rem;
-  //     font-size: 1rem;
-  //   }
-  // }
+  @media only screen and (max-width: 472px) {
+    button {
+      width: 9rem;
+      height: 2rem;
+      font-size: 0.8rem;
+      justify-content: center;
+    }
+    span:nth-child(2) {
+      margin-left: 0.3rem;
+    }
+
+    .logo {
+      font-size: 2rem;
+    }
+  }
 }

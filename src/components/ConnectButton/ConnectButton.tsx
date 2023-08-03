@@ -1,5 +1,4 @@
 import ButtonSpinner from "../ButtonSpinner/ButtonSpinner";
-import styles from "./ConnectButton.module.scss";
 import { useWeb3Modal } from "@web3modal/react";
 import { useBalance } from "wagmi";
 import { useAccount } from "wagmi";

@@ -12,6 +12,9 @@ export const walletValidationHandler = (
   if (!reg.test(String(e.target.value).toLowerCase())) {
     setError("Not a valid address");
     // setTimeout(setError(""), 3000)
+    setTimeout(function(){
+      setError("")
+   }, 3000);
   } else {
     setError("");
   }
