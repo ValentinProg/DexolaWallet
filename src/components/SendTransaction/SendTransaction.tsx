@@ -1,6 +1,6 @@
 import styles from "./SendTransaction.module.scss";
 import { useDebounce } from "../../helpers/useDebounce";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   usePrepareSendTransaction,
   useSendTransaction,
@@ -15,15 +15,26 @@ export const SendTransaction = () => {
   const [walletAddress, setWalletAddress] = useState("");
   const [validationError, setValidationError] = useState("");
   const [amount, setAmount] = useState("");
+  const [isSuccessStatus, setIsSuccessStatus] = useState(false);
+
   const { isConnected } = useAccount();
-  const debouncedTo = useDebounce(walletAddress, 500);
+  const debouncedWalletAddress = useDebounce(walletAddress, 500);
   const { config } = usePrepareSendTransaction({
-    to: debouncedTo,
+    to: debouncedWalletAddress,
   });
   const { data, sendTransaction } = useSendTransaction(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsSuccessStatus(true);
+      setTimeout(function () {
+        setIsSuccessStatus(false);
+      }, 3000);
+    }
+  }, [isSuccess]);
 
   return (
     <form
@@ -52,19 +63,19 @@ export const SendTransaction = () => {
         type="number"
         disabled={!isConnected || isLoading}
       />
-      <div className={styles.validationError}>{validationError}</div>
+
+      <div className={styles.messageContainer}>
+        {validationError && (
+          <span className={styles.validationError}>{validationError}</span>
+        )}
+        {isSuccessStatus && (
+          <span className={styles.success}>Successfully sent</span>
+        )}
+      </div>
+
       <Button disabled={!isConnected || isLoading}>
         {isLoading ? <ButtonSpinner /> : "Send"}
       </Button>
-
-      {isSuccess && (
-        <div>
-          Successfully sent {amount} ether to {walletAddress}
-          <div>
-            <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
-          </div>
-        </div>
-      )}
     </form>
   );
 };

@@ -2,8 +2,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
   margin-top: 4rem;
+  position: relative;
 }
 
 .input {
@@ -34,14 +35,23 @@
 }
 
 .validationError {
-height: 1rem;
-color: red;
+  height: 1rem;
+  color: red;
   
+}
+
+.success {
+  color: green;
 }
 
 @media only screen and (max-width: 472px) {
   .input {
     font-size: 1rem;
-  width: 15rem;
+    width: 15rem;
   }
+}
+
+.messageContainer {
+  position: absolute;
+  bottom: 60px;
 }

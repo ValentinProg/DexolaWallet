@@ -12,10 +12,6 @@ const ConnectButton = () => {
   });
   const { isOpen, open } = useWeb3Modal();
 
-  // const buttonInfo = `${data?.formatted.slice(0, 4)} ${getShortString(
-  //   address
-  // )}`;
-
   const walletCheck = data?.formatted.slice(0, 4)
 
   return (
